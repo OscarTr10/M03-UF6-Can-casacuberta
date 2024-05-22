@@ -1,30 +1,88 @@
-import java.sql.*;
-
 public class Llibres {
+    private int idLlibre;
+    private String titol;
+    private String autor;
+    private String isbn;
+    private String editorial;
+    private int anyPublicacio;
+    private String categoria;
+    private String estat;
 
-    static final String DB_URL = "jdbc:mysql://localhost:3306/Programacion";
-    static final String USER = "program";
-    static final String PASS = "L@p1neda";
-    static final String QUERY = "SELECT * FROM Llibres";
+    // Constructor
+    public Llibres(int idLlibre, String titol, String autor, String isbn, String editorial, int anyPublicacio, String categoria, String estat) {
+        this.idLlibre = idLlibre;
+        this.titol = titol;
+        this.autor = autor;
+        this.isbn = isbn;
+        this.editorial = editorial;
+        this.anyPublicacio = anyPublicacio;
+        this.categoria = categoria;
+        this.estat = estat;
+    }
 
-    public static void main(String[] args) {
-        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)) {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(QUERY);
-            while (rs.next()) {
-                System.out.println("ID_Llibre: " + rs.getInt("ID_Llibre") + 
-                                   ", Títol: " + rs.getString("Titol") + 
-                                   ", Autor: " + rs.getString("Autor") + 
-                                   ", ISBN: " + rs.getString("ISBN") + 
-                                   ", Editorial: " + rs.getString("Editorial") + 
-                                   ", Any_Publicacio: " + rs.getInt("Any_Publicacio") + 
-                                   ", Categoria: " + rs.getString("Categoria") + 
-                                   ", Estat: " + rs.getString("Estat"));
-            
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    // Getters y Setters
+    public int getIdLlibre() {
+        return idLlibre;
+    }
+
+    public void setIdLlibre(int idLlibre) {
+        this.idLlibre = idLlibre;
+    }
+
+    public String getTitol() {
+        return titol;
+    }
+
+    public void setTitol(String titol) {
+        this.titol = titol;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public String getEditorial() {
+        return editorial;
+    }
+
+    public void setEditorial(String editorial) {
+        this.editorial = editorial;
+    }
+
+    public int getAnyPublicacio() {
+        return anyPublicacio;
+    }
+
+    public void setAnyPublicacio(int anyPublicacio) {
+        this.anyPublicacio = anyPublicacio;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getEstat() {
+        return estat;
+    }
+
+    public void setEstat(String estat) {
+        this.estat = estat;
     }
 }
 
