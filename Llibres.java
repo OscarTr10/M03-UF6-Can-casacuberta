@@ -8,7 +8,6 @@ public class Llibres {
     private String categoria;
     private String estat;
 
-    // Constructor
     public Llibres(int idLlibre, String titol, String autor, String isbn, String editorial, int anyPublicacio, String categoria, String estat) {
         this.idLlibre = idLlibre;
         this.titol = titol;
@@ -20,7 +19,6 @@ public class Llibres {
         this.estat = estat;
     }
 
-    // Getters y Setters
     public int getIdLlibre() {
         return idLlibre;
     }

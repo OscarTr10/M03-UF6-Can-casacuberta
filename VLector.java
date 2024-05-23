@@ -31,11 +31,6 @@ public class VLector extends JFrame {
         panel.add(historicPrestecsBoto);
         add(panel);
     }
-
-
-    public static void main(String[] args) {
-       obrirVLector();
-    }
   
     static void obrirVLector() {
         SwingUtilities.invokeLater(new Runnable() {

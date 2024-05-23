@@ -11,27 +11,22 @@ public class VLectorCercarLlibres extends JFrame {
 
     public VLectorCercarLlibres() {
         gestorUsuaris = new GestorFuncions();
-
         setTitle("Cercar Llibres");
         setSize(500, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
-
         JPanel cercarPanel = new JPanel();
         cercarPanel.setLayout(new FlowLayout());
-        JLabel cercarLabel = new JLabel("Cercar Llibre:");
+        JLabel cercarLabel = new JLabel("Cercar Llibre per Titol:");
         campCercaLlibre = new JTextField(10);
         JButton cercarButton = new JButton("Cercar");
         cercarPanel.add(cercarLabel);
         cercarPanel.add(campCercaLlibre);
         cercarPanel.add(cercarButton);
-
         areaResultats = new JTextArea();
         areaResultats.setEditable(false);
-
         JScrollPane scrollPane = new JScrollPane(areaResultats);
-
         add(cercarPanel, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
 

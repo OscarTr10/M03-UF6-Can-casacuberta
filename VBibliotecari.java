@@ -16,7 +16,7 @@ public class VBibliotecari extends JFrame {
         JButton gestionPrestecsButton = new JButton("Gestió de Préstecs");
         add(gestionUsuarisButton);
         add(gestionPrestecsButton);
-
+        
         gestionUsuarisButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

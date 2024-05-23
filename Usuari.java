@@ -1,7 +1,7 @@
 import java.sql.Date;
 
 public class Usuari {
-    private int id;
+    private static int id;  //Lo he tenido que declarar así para luego hacer la función Usuario.getid()
     private String nom;
     private String cognoms;
     private String email;
@@ -10,7 +10,7 @@ public class Usuari {
     private Date dataRegistre;
 
     public Usuari(int id, String nom, String cognoms, String email, String telefon, String rol, Date dataRegistre) {
-        this.id = id;
+        Usuari.id = id;
         this.nom = nom;
         this.cognoms = cognoms;
         this.email = email;
@@ -19,11 +19,11 @@ public class Usuari {
         this.dataRegistre = dataRegistre;
     }
 
-    public int getId() {
+    public static int getId() {
         return id;
     }
     public void setId(int id) {
-        this.id = id;
+        Usuari.id = id;
     }
 
     public String getNom() {

@@ -54,11 +54,10 @@ public class VBibliotecariPrestecs extends JFrame {
     }
 
     public void afegirPrestec() {
-        JFrame frame = new JFrame("Crear Préstec");
+        JFrame frame = new JFrame("Crear Préstec"); // Primero creamos el marco
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(400, 200);
-        
-        JPanel panel = new JPanel();
+        JPanel panel = new JPanel(); // Aquí creamos el panel/ventana
         JLabel label = new JLabel("Introdueix els detalls del nou préstec:");
         JTextField idLlibreField = new JTextField(10);
         JTextField idUsuariField = new JTextField(10);
@@ -80,14 +79,19 @@ public class VBibliotecariPrestecs extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    int idLlibre = Integer.parseInt(idLlibreField.getText());
+                    int idLlibre = Integer.parseInt(idLlibreField.getText());   //convierte el texto en un int.
                     int idUsuari = Integer.parseInt(idUsuariField.getText());
                     String dataRetornPrevistText = dataRetornPrevistField.getText();
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                     Date dataRetornPrevist = dateFormat.parse(dataRetornPrevistText);
-                    gestorPrestecs.afegirPrestec(idLlibre, idUsuari, dataRetornPrevist);
-                    JOptionPane.showMessageDialog(frame, "Préstec creat correctament.", "Èxit", JOptionPane.INFORMATION_MESSAGE);
-                    frame.dispose(); // Tanca la finestra després de crear el préstec
+                    boolean success = gestorPrestecs.afegirPrestec(idLlibre, idUsuari, dataRetornPrevist);
+                    if (success) {
+                        JOptionPane.showMessageDialog(frame, "Préstec creat correctament.", "Èxit", JOptionPane.INFORMATION_MESSAGE);
+                        frame.dispose(); // Tanca la finestra després de crear el préstec
+                    } else {
+                        // Mostrar mensaje de error si el libro no está disponible o no existe
+                        JOptionPane.showMessageDialog(frame, "El llibre no està disponible o no existeix.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 } catch (NumberFormatException | ParseException ex) {
                     JOptionPane.showMessageDialog(frame, "Error en els camps introduïts. Si us plau, revisa'ls.", "Error", JOptionPane.ERROR_MESSAGE);
                     ex.printStackTrace();
@@ -110,12 +114,20 @@ public class VBibliotecariPrestecs extends JFrame {
         frame.add(panel);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        
         completarButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {        //Genero otra acción del botón completar
+            public void actionPerformed(ActionEvent e) {  
+                try {      //Genero otra acción del botón completar
                 int idPrestec = Integer.parseInt(idPrestecField.getText());     //Cogo los parámetros que me han pasado en la JLabel en este caso el id
-                gestorPrestecs.completarPrestec(idPrestec);     //Le asigno la función completar
+                gestorPrestecs.completarPrestec(idPrestec);
+                JOptionPane.showMessageDialog(frame, "Préstec completat amb èxit!", "Èxit", JOptionPane.INFORMATION_MESSAGE);     //Le asigno la función completar
                 frame.dispose();
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(frame, "ID del préstec no vàlid. Si us plau, introdueix un número enter.", "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(frame, "Error en completar el préstec: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
     }
